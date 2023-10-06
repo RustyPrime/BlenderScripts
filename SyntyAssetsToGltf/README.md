@@ -22,7 +22,7 @@ In the first few lines you need to define:
 - the output folder where the exported meshes should be placed
 
 
-After launching it, it will do the following:
+After launching it, it will do the following for each fbx in the input folder:
 - Cleans the workspace (Removes everything in the scene collection as well purges orphans)
 - Imports the fbx
 - Sets the scale to [1,1,1]
