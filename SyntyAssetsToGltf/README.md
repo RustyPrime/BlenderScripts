@@ -45,6 +45,7 @@ After launching it, it will do the following for each fbx in the input folder:
 - The input folder should not contain any other files other than .fbx files (e.g. .import or .meta)
 - The output folder should not be the same as the input folder as it would overwrite the originals when exporting to fbx
 - Doesn't yet work with Characters
+- The script creates a new material for each color even if that color has been used by a different mesh, meaning that the meshes won't share materials when extracting them inside a game engine.
 
 ## Tested with
 - Blender 3.6
