@@ -5,17 +5,11 @@ from os import listdir
 from os.path import isfile, join
 from PIL import Image
     
+# Synty Assets texture to material conversion - Created by RustyPrime
 
-
-#texture = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\Textures\Characters_Texture_01.png"
 texture = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\Textures\PolygonSamurai_Tex_01.png"
 texture_background_color = (113, 113, 113)
-
-#path_of_objects_to_convert = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\FBX\CharacterProps"
 path_of_objects_to_convert = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\FBX"
-objects_to_convert = [f for f in listdir(path_of_objects_to_convert) if isfile(join(path_of_objects_to_convert, f))]
-
-#output_path = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\RS\CharacterProps"
 output_path = "D:\_Projects\Assets\SyntyAssets\Polygon_Samurai\SourceFiles\RS"
 
 def convertUnwrapAndExport(objectName):
@@ -252,6 +246,7 @@ def export(objectName):
 
 conversions = 0
 failedConversions = []
+objects_to_convert = [f for f in listdir(path_of_objects_to_convert) if isfile(join(path_of_objects_to_convert, f))]
 for object in objects_to_convert:
     # cleanup workspace    
     bpy.ops.object.mode_set(mode='OBJECT')

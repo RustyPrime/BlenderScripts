@@ -1,7 +1,42 @@
-### Synty Assets texture to material conversion
+# Synty Assets texture to material conversion
+This script can be used in blender to convert Synty-Assets from texture/uv-mapped colors to material colors.
 
-# test
+## The problem
+Synty-Assets use uv mapping to set the color of faces using a texture as a color pallete.
+This might be good for performance since you only need one material for every object but this also means that you cannot change the texture of the object without loosing the color. 
+If you do change the texture then the object won't be able to display it properly since it's not unwrapped correctly.
+See the example below.
+
+### Example
+[The problem](docs/theProblem.png)
 
 
-# test 2
+
+## What this script does
+
+In the first few lines you need to define:
+- the texture that will used to pick the color from
+- the background color of texture, if a uv vertex is placed on the background it means that the texture is most likely the wrong one for that object and is therefor skipped
+- the folder which contains the fbx files you want to convert
+- the output folder where the exported meshes should be placed
+
+
+After launching it, it will do the following:
+- Cleans the workspace (Removes everything in the scene collection as well purges orphans)
+- Imports the fbx
+- Sets the scale to [1,1,1]
+- Looks for a texture node and changes its texture to the given one
+	- This is due to there being no texture set after importing
+- Looks under each face for a color on the texture using PIL
+- Groups the faces by color
+- For each color it finds it
+	- Selects faces based on color
+	- Creates a new material with that color
+	- Assigns the material to a new slot
+	- Assgins the faces to that slot
+	
+- Unwraps the object using "Smart UV Project"
+- Exports the object to gltf
+	- This is needed for my use-case however you can easily change the export format by ``changing `bpy.ops.export_scene.gltf(filepath=exportPath)` to `bpy.ops.export_scene.fbx(filepath=exportPath)``` or any other format.
+
 
