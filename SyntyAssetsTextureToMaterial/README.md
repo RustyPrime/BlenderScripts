@@ -43,11 +43,11 @@ After launching it, it will do the following for each fbx in the input folder:
 
 ## Caveats
 - You need to install Pillow for python
-On Windows:
-	- Open the directory where blender is installed
-	- Go to into \[BLENDER VERSION]\python\bin
-	- Shift+Rightclick into folder and click on "Open PowerShell window here"
-	- run ```.\python -m ensurepip --default-pip``` and ```.\python -m pip install Pillow```
+	- On Windows:
+		- Open the directory where blender is installed
+		- Go to into \[BLENDER VERSION]\python\bin
+		- Shift+Rightclick into folder and click on "Open PowerShell window here"
+		- run ```.\python -m ensurepip --default-pip``` and ```.\python -m pip install Pillow```
 - The input folder should not contain any other files other than .fbx files (e.g. .import or .meta)
 - The output folder should not be the same as the input folder as it would overwrite the originals when exporting to fbx
 - Doesn't yet work with Characters
