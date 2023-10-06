@@ -37,10 +37,15 @@ After launching it, it will do the following for each fbx in the input folder:
 	- Assgins the faces to that slot
 - Unwraps the object using "Smart UV Project"
 - Exports the object to gltf
-	- This is needed for my use-case however you can easily change the export format by ``changing `bpy.ops.export_scene.gltf(filepath=exportPath)` to `bpy.ops.export_scene.fbx(filepath=exportPath)``` or any other format.
+	- This is needed for my use-case however you can easily change the export format by ```bpy.ops.export_scene.gltf(filepath=exportPath)``` to ```bpy.ops.export_scene.fbx(filepath=exportPath)``` or any other format.
 
 
 
 ## Caveats
-- The input folder should not contain any other files other than .fbx files
+- The input folder should not contain any other files other than .fbx files (e.g. .import or .meta)
 - The output folder should not be the same as the input folder as it would overwrite the originals when exporting to fbx
+- Doesn't yet work with Characters
+
+## Tested with
+- Blender 3.6
+- Synty's [POLYGON - Samurai Pack](https://syntystore.com/products/polygon-samurai-pack)
