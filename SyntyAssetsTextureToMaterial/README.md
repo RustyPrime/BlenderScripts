@@ -43,7 +43,7 @@ After launching it, it will do the following for each fbx in the input folder:
 
 ## Caveats
 - You need to install Pillow for python
-	On Windows:
+On Windows:
 	- Open the directory where blender is installed
 	- Go to into \[BLENDER VERSION]\python\bin
 	- Shift+Rightclick into folder and click on "Open PowerShell window here"
