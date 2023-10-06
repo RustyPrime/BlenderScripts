@@ -250,8 +250,8 @@ def export(objectName):
     bpy.ops.export_scene.gltf(filepath=exportPath)
 
 
-convertions = 0
-failedConvertions = []
+conversions = 0
+failedConversions = []
 for object in objects_to_convert:
     # cleanup workspace    
     bpy.ops.object.mode_set(mode='OBJECT')
@@ -263,15 +263,15 @@ for object in objects_to_convert:
     print("converting: " + object)
     couldConvert = convertUnwrapAndExport(object)
     if not couldConvert:
-        failedConvertions.append(object)
+        failedConversions.append(object)
     else:
-        convertions += 1
+        conversions += 1
         
-print("converted " + str(convertions) + "/" + str(len(objects_to_convert)) + " objects")
+print("converted " + str(conversions) + "/" + str(len(objects_to_convert)) + " objects")
     
-# display any convertions that failed
-if failedConvertions != []:   
-    print("failed to convert: " +  str(failedConvertions))
+# display any conversions that failed
+if failedConversions != []:   
+    print("failed to convert: " +  str(failedConversions))
 
 
 
