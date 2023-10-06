@@ -8,7 +8,7 @@ If you do change the texture then the object won't be able to display it properl
 See the example below.
 
 ### Example
-[The problem](docs/theProblem.png)
+![The problem](docs/theProblem.png)
 
 
 
