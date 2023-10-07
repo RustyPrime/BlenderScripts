@@ -1,5 +1,5 @@
-# Synty Assets texture to material conversion
-This script can be used in blender to convert Synty-Assets from texture/uv-mapped colors to material colors.
+# Synty Assets texture atlas to material conversion
+This script can be used in blender to convert Synty-Assets from texture-atlas/uv-mapped colors to material colors.
 
 ## The problem
 Synty-Assets use uv mapping to set the color of faces using a texture as a color pallete.
