@@ -30,12 +30,12 @@ def convertUnwrapAndExport(objectName):
     if not texture_node:
         # skipping this object because it doesnt have a texture node that we could read the color from
         # altough you could add a node here
-        return False;
+        return False
     
     # convert the texture uv mapped color to a material color
-    couldAssign = assignColorToFaces(importedObject, texture_node.image)
+    couldAssign = assignColorToFaces(importedObject)
     if not couldAssign:
-        return False;
+        return False
     
     # smart uv unwrap objects
     unwrapObjects()
@@ -74,7 +74,7 @@ def find_nodes_by_type(material, node_type):
    
     return node_list
 
-def assignColorToFaces(importedObject, image):
+def assignColorToFaces(importedObject):
     #switch to edit mode
     bpy.ops.object.mode_set(mode='EDIT')
     
@@ -84,7 +84,7 @@ def assignColorToFaces(importedObject, image):
     if not importedObjectBM:
         return False
     # get the colors used in the mesh
-    colorToFacesDict = uvPointsToColors(importedObjectBM, image)
+    colorToFacesDict = uvPointsToColors(importedObjectBM)
     
     # uv point is over background of image
     if texture_background_color in colorToFacesDict:
@@ -128,11 +128,7 @@ def assignColorToFaces(importedObject, image):
     return True
 
     
-def uvPointsToColors(importedObjectBM, image):
-    im = Image.open(texture)
-    px = im.load()
-    im = im.convert('RGB')
-
+def uvPointsToColors(importedObjectBM):
     uv_layer = importedObjectBM.loops.layers.uv.verify()
     bpy.ops.mesh.select_all(action='DESELECT')
     bpy.data.scenes["Scene"].tool_settings.use_uv_select_sync = True
@@ -142,7 +138,7 @@ def uvPointsToColors(importedObjectBM, image):
     for face in importedObjectBM.faces:
         for loop in face.loops:
             uv = loop[uv_layer]
-            color = uvToColor(uv.uv, image, im)
+            color = uvToColor(uv.uv)
             
             if color in colorToFacesDict:
                 values = colorToFacesDict[color]
@@ -154,9 +150,10 @@ def uvPointsToColors(importedObjectBM, image):
     #bpy.ops.object.mode_set(mode='OBJECT')
     return colorToFacesDict
 
-def uvToColor(uv, image, im):
-    width = image.size[0]
-    height = image.size[1]
+def uvToColor(uv):
+    global im
+    
+    width, height = im.size
     
     x = width * uv.x
     y = height - (height * uv.y)
@@ -256,6 +253,11 @@ def export(objectName):
 conversions = 0
 failedConversions = []
 objects_to_convert = [f for f in listdir(path_of_objects_to_convert) if isfile(join(path_of_objects_to_convert, f))]
+
+im = Image.open(texture)
+px = im.load()
+im = im.convert('RGB')
+    
 for object in objects_to_convert:
     # cleanup workspace    
     bpy.ops.object.mode_set(mode='OBJECT')
