@@ -186,19 +186,28 @@ def createMaterialWithColor(materialName, color):
     principled_node = material.node_tree.nodes['Principled BSDF']            
     # set color
     principled_node.inputs[0].default_value = color
-    # set specular to 0
-    principled_node.inputs[7].default_value = 0
-    # set roughness to 1
-    principled_node.inputs[9].default_value = 1 
+    # set metallic to 0.5
+    principled_node.inputs[6].default_value = 0.5
+    # set specular to 1
+    principled_node.inputs[7].default_value = 1
+    # set roughness to 0.735495
+    principled_node.inputs[9].default_value = 0.735495
     return material
 
 
 def normalizeColor(color):
-    color = tuple(ti/890 for ti in color)
+    color = tuple(ti/255 for ti in color)
+    color = tuple(srgb_to_linearrgb(ti) for ti in color)
     color = color + (1,)
     return color
 
-
+def srgb_to_linearrgb(c):
+    if   c < 0:       
+        return 0
+    elif c < 0.04045: 
+        return c/12.92
+    else:             
+        return ((c+0.055)/1.055)**2.4
 
 def unwrapObjects():
     print("uv unwrapping object")
