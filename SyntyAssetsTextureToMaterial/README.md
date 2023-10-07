@@ -40,6 +40,12 @@ After launching it, it will do the following for each fbx in the input folder:
 	- This is needed for my use-case however you can easily change the export format by ```bpy.ops.export_scene.gltf(filepath=exportPath)``` to ```bpy.ops.export_scene.fbx(filepath=exportPath)``` or any other format.
 
 
+## The result
+![The result](docs/result.png)
+Each color on the mesh has its own material assigned to different slots.
+
+## Console output
+![Console output](docs/consoleOutput.png)
 
 ## Caveats
 - You need to install Pillow for python
